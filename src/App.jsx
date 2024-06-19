@@ -3,24 +3,24 @@ import React, { useState } from 'react';
 import ListaTareas from './components/ListaTareas';
 
 function App() {
-  const [listaTareas, setListaTareas] = useState([]);
+  const [listaTareas, setListaTareas] = useState([]); // arreglo vacio para las tareas
   const [nuevaTarea, setNuevaTarea] = useState("");
 
-  const agregarTarea = () => {
-    if (nuevaTarea.trim() !== "") {
+  const agregarTarea = () => { 
+    if (nuevaTarea.trim() !== "") { // evaluamos si lo que ingresamos no está vacío, trim
       setListaTareas([...listaTareas, { text: nuevaTarea, completed: false }]);
       setNuevaTarea("");
     }
   };
 
-  const toggleTodo = (index) => {
-    const updatedTareas = listaTareas.map((tarea, i) =>
+  const alternarTareas = (index) => {
+    const actualizarTareas = listaTareas.map((tarea, i) =>
       i === index ? { ...tarea, completed: !tarea.completed } : tarea
     );
-    setListaTareas(updatedTareas);
+    setListaTareas(actualizarTareas);
   };
 
-  const deleteTodo = (index) => {
+  const borrarTarea = (index) => {
     setListaTareas(listaTareas.filter((_, i) => i !== index));
   };
 
@@ -37,16 +37,17 @@ function App() {
             onChange={(e) => setNuevaTarea(e.target.value)}
           />
           <button
-            className="bg-blue-500 text-white p-2 mt-3 rounded-full  "
+            className="bg-green-600 text-white p-2 mt-3 rounded-full  "
             onClick={agregarTarea}
+  
           >
             Agregar
           </button>
         </div>
         <ListaTareas
           listaTareas={listaTareas}
-          toggleTodo={toggleTodo}
-          deleteTodo={deleteTodo}
+          alternarTareas={alternarTareas}
+          borrarTarea={borrarTarea}
         />
       </div>
     </div>

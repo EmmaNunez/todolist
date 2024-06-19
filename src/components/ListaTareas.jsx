@@ -3,7 +3,7 @@
 import React from 'react';
 import Tareas from './Tareas';
 
-function ListaTareas({ listaTareas, toggleTodo, deleteTodo }) {
+function ListaTareas({ listaTareas, alternarTareas, borrarTarea }) {
   return (
     <ul>
       {listaTareas.map((tarea, index) => (
@@ -11,8 +11,8 @@ function ListaTareas({ listaTareas, toggleTodo, deleteTodo }) {
           key={index}
           tarea={tarea}
           index={index}
-          toggleTodo={toggleTodo}
-          deleteTodo={deleteTodo}
+          alternarTareas={alternarTareas}
+          borrarTarea={borrarTarea}
         />
       ))}
     </ul>
